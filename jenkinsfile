@@ -3,13 +3,13 @@ pipeline {
     stages{
         stage('Build'){
             steps{
-                bat 'copy helloworld/main.cpp .'
-                bat 'g++ -o hello main.cpp'
+                sh 'sh helloworld/main.cpp .'
+                sh 'g++ -o hello main.cpp'
             }
         }
         stage('Test'){
             steps{
-                bat 'hello.exe'
+                sh './hello'
             }
         }
     }
