@@ -1,15 +1,16 @@
 pipeline {
     agent any
     stages{
-    stage('Build'){
-        steps{
-            bat 'copy helloworld/main.cpp .'
-            bat 'g++ -o hello helloworld.cpp'
+        stage('Build'){
+            steps{
+                bat 'copy helloworld/main.cpp .'
+                bat 'g++ -o hello helloworld.cpp'
+            }
         }
-    }
-    stage('Test'){
-        steps{
-            bat 'hello.exe'
+        stage('Test'){
+            steps{
+                bat 'hello.exe'
+            }
         }
     }
 }
