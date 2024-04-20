@@ -4,7 +4,7 @@ pipeline {
         stage('Build'){
             steps{
                 bat 'copy helloworld/main.cpp .'
-                bat 'g++ -o hello helloworld.cpp'
+                bat 'g++ -o hello main.cpp'
             }
         }
         stage('Test'){
