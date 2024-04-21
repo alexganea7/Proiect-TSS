@@ -1,15 +1,26 @@
 pipeline {
     agent any
-    stages{
-        stage('Build'){
-            steps{
-                sh 'cp helloworld/main.cpp .'
-                sh 'g++ -o hello main.cpp'
+    stages {
+        stage('Build') {
+            steps {
+                sh 'tests.cpp .'
+                sh 'g++ -o tests tests.cpp -I include/ -L -lib/ -lgtest'
             }
         }
-        stage('Test'){
-            steps{
-                sh './hello'
+        stage('Test') {
+            steps {
+                sh './tests'
+            }
+        }
+        stage('Code Coverage') {
+            steps {
+                sh 'lcov --capture --directory . --output-file coverage.info'
+                sh 'genhtml coverage.info --output-directory coverage-report'
+            }
+            post {
+                always {
+                    echo 'Code coverage report available at: ${env.WORKSPACE}/coverage-report/index.html'
+                }
             }
         }
     }
