@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'g++ -o tests tests.cpp --coverage'
+                sh 'g++ -o tests tests.cpp /lib/libgtest.a --coverage'
             }
         }
         stage('Test') {
@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Code Coverage') {
             steps {
-                sh 'lcov --capture --filter branch --rc lcov_branch_coverage=1 --directory . --output-file coverage_output'
+                sh 'lcov --capture --directory . --rc lcov_branch_coverage=1 --filter branch --output-file coverage_output'
                 sh 'genhtml -s coverage_output --branch-coverage --highlight --legend --output-directory html'
             }
             post {
