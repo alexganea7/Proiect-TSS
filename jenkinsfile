@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'tests.cpp .'
+                sh 'cp tests.cpp .'
                 sh 'g++ -o tests tests.cpp -I include/ -L -lib/ -lgtest'
             }
         }
