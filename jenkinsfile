@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Code Coverage') {
             steps {
-                sh 'lcov --capture --directory . --rc lcov_branch_coverage=1 --filter branch --output-file coverage_output'
+                sh 'lcov --capture --directory . --rc branch_coverage=1 --filter branch --output-file coverage_output --ignore-errors inconsistent'
                 sh 'genhtml -s coverage_output --branch-coverage --highlight --legend --output-directory html'
             }
             post {
