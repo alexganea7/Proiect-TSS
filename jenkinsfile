@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'g++ -o tests tests.cpp /usr/lib/libgtest.a'
+                sh 'g++ -o tests tests.cpp /usr/lib/libgtest.a --coverage'
             }
         }
         stage('Test') {
