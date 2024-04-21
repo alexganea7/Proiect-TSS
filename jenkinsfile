@@ -13,12 +13,12 @@ pipeline {
         }
         stage('Code Coverage') {
             steps {
-                sh 'lcov --capture --directory . --rc branch_coverage=1 --filter branch --output-file coverage_output'
-                sh 'genhtml coverage_output --branch-coverage --highlight --legend --output-directory html'
+                sh 'lcov --no-external --ignore-errors mismatch --capture --directory . --rc lcov_branch_coverage=1 --filter branch --output-file coverage_output'
+                sh 'genhtml -s coverage_output --branch-coverage --highlight --legend --output-directory html'
             }
             post {
                 always {
-                    echo 'Code coverage report available at: ${env.WORKSPACE}/coverage-report/index.html'
+                    echo 'Code coverage report available at: ${env.WORKSPACE}/html/index.html'
                 }
             }
         }
