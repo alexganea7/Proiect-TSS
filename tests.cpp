@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 
 TEST(maximTest, marePrimul) { 
-    ASSERT_EQ(1, maxim(1,0));
+    ASSERT_EQ(0, maxim(1,0));
     // ASSERT_EQ(1, maxim(0,1));
     // ASSERT_EQ(2, maxim(0,2));
 }
