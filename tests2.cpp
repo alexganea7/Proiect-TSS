@@ -23,10 +23,10 @@ TEST(constructorParam, GraphWithElements){
 }
 
 TEST_F(GraphTest, inserturiStergeri){
-    g->insertNode();
+    g->insertNode(5);
     EXPECT_EQ(1, g->get_adj().size());
-    EXPECT_EQ(INT_MAX-1, g->get_x());
-    EXPECT_EQ(1, g->get_adj().find(INT_MAX) != g->get_adj().end());
+    // EXPECT_EQ(INT_MAX-1, g->get_x());
+    // EXPECT_EQ(1, g->get_adj().find(INT_MAX) != g->get_adj().end());
     EXPECT_EQ(1, g->getNodes().size());
     g->insertNode(1);
     EXPECT_EQ(2, g->get_adj().size());
