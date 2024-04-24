@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'g++ -o tests tests.cpp /lib/libgtest.a --coverage'
+                sh 'g++ -o tests tests2.cpp /lib/libgtest.a --coverage'
             }
         }
         stage('Test') {
