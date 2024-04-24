@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Code Coverage') {
             steps {
-                sh 'lcov --no-external --ignore-errors mismatch --capture --directory . --output-file coverage_output'
+                sh 'lcov --no-external --ignore-errors mismatch -ignore-errors mismatch,mismatch --capture --directory . --output-file coverage_output'
                 sh 'genhtml -s coverage_output --highlight --legend --output-directory html'
             }
             post {
