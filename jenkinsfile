@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'lcov --no-external --ignore-errors mismatch --ignore-errors inconsistent --capture --directory . --rc geninfo_unexecuted_blocks=1 --rc branch_coverage=1 --filter branch --output-file coverage_output'
+                sh 'g++ -o tests tests.cpp /lib/libgtest.a --coverage'
             }
         }
         stage('Test') {
@@ -18,8 +18,8 @@ pipeline {
         }
         stage('Code Coverage') {
             steps {
-                sh 'lcov --no-external --ignore-errors mismatch -ignore-errors mismatch,mismatch --capture --directory . --output-file coverage_output'
-                sh 'genhtml -s coverage_output --branch-coverage --highlight --legend --output-directory html'
+                sh 'lcov --no-external --ignore-errors mismatch --ignore-errors inconsistent --capture --directory . --rc geninfo_unexecuted_blocks=1 --rc branch_coverage=1 --filter branch --output-file coverage_output'
+                sh 'genhtml -s coverage_output --highlight --legend --output-directory html'
             }
             post {
                 always {
